@@ -26,12 +26,13 @@ function SingleArticle(){
     }
 
     return <>
-        <p>Hello</p>
         <Header header={article.title}/>
         <img src={article.article_img_url}/>
-        <p>author:{article.author}</p>
-        <p>topics:{article.topic}</p>
+        <p>Author:{article.author}</p>
+        <p>Topics:{article.topic}</p>
         <p>{article.body}</p>
+        <p>Posted:{new Date(article.created_at).toLocaleDateString()}</p>
+        <p>{article.comment_count} comments</p>
     </>
 
 }
