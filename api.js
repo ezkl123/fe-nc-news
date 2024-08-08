@@ -11,7 +11,6 @@ function getArticles(){
 }
 
 function getSingleArticle(articleId){
-    // console.log(articleId)
     return api.get(`/api/articles/${articleId}`).then((response) => {
         return response.data.article;
     })

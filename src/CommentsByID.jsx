@@ -10,12 +10,21 @@ function CommentsByID(){
 
     const [comments, setComments] = useState([])
 
+    const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
         getCommentsByID(article_id)
         .then((commentsResponse) => {
             setComments(commentsResponse)
+            setIsLoading(false)
         })
     }, [])
+
+    if (isLoading){
+        return <>
+            <h2>Loading...</h2>
+        </>
+    }
 
     return (
         <>
@@ -26,7 +35,7 @@ function CommentsByID(){
                     <p>Posted By {comment.author}</p>
                     <p>{comment.body}</p>
                     <p>Posted at {new Date(comment.created_at).toLocaleDateString()}</p>
-                    <p>{comment.votes}</p>
+                    <p><button>Upvote</button>{comment.votes}<button>Downvote</button></p>
                 </div>
             })}
         </ul>

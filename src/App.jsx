@@ -2,8 +2,8 @@ import {Route, Routes} from 'react-router-dom'
 import Header from './Header'
 import Articles from './Articles'
 import Navbar from './Navbar'
-import SingleArticle from './SingleArticle'
 import CommentsByID from './CommentsByID'
+import {SingleArticle} from './SingleArticle'
 
 function App(){
 

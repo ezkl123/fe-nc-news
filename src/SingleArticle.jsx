@@ -20,7 +20,7 @@ function SingleArticle(){
 
     if (isLoading){
         return <>
-            <h1>Loading...</h1>
+            <h2>Loading...</h2>
         </>
     }
 
@@ -31,11 +31,14 @@ function SingleArticle(){
         <p>Topics:{article.topic}</p>
         <p>{article.body}</p>
         <p>Posted:{new Date(article.created_at).toLocaleDateString()}</p>
+        <p><button>Upvote</button>{article.votes}<button>Downvote</button></p>
         <Link to={`/articles/${article.article_id}/comments`}>
             <p>{article.comment_count} comments</p>
         </Link>
     </>
+        
+    
 
 }
 
-export default SingleArticle;
+export {SingleArticle}

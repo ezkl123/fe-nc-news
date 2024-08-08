@@ -17,7 +17,7 @@ function Articles(){
 
     if (isLoading){
         return <>
-            <h1>Loading...</h1>
+            <h2>Loading...</h2>
         </>
     }
 
