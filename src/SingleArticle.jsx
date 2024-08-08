@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getSingleArticle } from "../api"
 import { useParams, Link } from "react-router-dom"
 import Header from "./Header"
+import VoteHandler from "./VoteHandler"
 
 function SingleArticle(){
     const {article_id} = useParams()
@@ -31,7 +32,7 @@ function SingleArticle(){
         <p>Topics:{article.topic}</p>
         <p>{article.body}</p>
         <p>Posted:{new Date(article.created_at).toLocaleDateString()}</p>
-        <p><button>Upvote</button>{article.votes}<button>Downvote</button></p>
+        <VoteHandler articleId={article.article_id}/>
         <Link to={`/articles/${article.article_id}/comments`}>
             <p>{article.comment_count} comments</p>
         </Link>
