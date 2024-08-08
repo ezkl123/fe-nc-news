@@ -13,9 +13,14 @@ function getArticles(){
 function getSingleArticle(articleId){
     // console.log(articleId)
     return api.get(`/api/articles/${articleId}`).then((response) => {
-        console.log(response.data.article)
         return response.data.article;
     })
 }
 
-export { getArticles, getSingleArticle }
+function getCommentsByID(articleId){
+    return api.get(`/api/articles/${articleId}/comments`).then((response) => {
+        return response.data.comments;
+    })
+}
+
+export { getArticles, getSingleArticle, getCommentsByID }

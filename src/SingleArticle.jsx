@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { getSingleArticle } from "../api"
-import { useParams } from "react-router-dom"
-import dateFormat, {masks} from "dateformat"
+import { useParams, Link } from "react-router-dom"
 import Header from "./Header"
 
 function SingleArticle(){
@@ -32,7 +31,9 @@ function SingleArticle(){
         <p>Topics:{article.topic}</p>
         <p>{article.body}</p>
         <p>Posted:{new Date(article.created_at).toLocaleDateString()}</p>
-        <p>{article.comment_count} comments</p>
+        <Link to={`/articles/${article.article_id}/comments`}>
+            <p>{article.comment_count} comments</p>
+        </Link>
     </>
 
 }

@@ -3,6 +3,7 @@ import Header from './Header'
 import Articles from './Articles'
 import Navbar from './Navbar'
 import SingleArticle from './SingleArticle'
+import CommentsByID from './CommentsByID'
 
 function App(){
 
@@ -13,6 +14,7 @@ function App(){
       <Route path="/" element={<Articles/>}/>
       <Route path="/articles" element={<Articles/>}/>
       <Route path="/articles/:article_id" element={<SingleArticle/>}/>
+      <Route path="/articles/:article_id/comments" element={<CommentsByID/>}/>
     </Routes>
   </>)
   
