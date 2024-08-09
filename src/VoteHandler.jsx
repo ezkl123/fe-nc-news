@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { updateArticleVotes } from "../api";
+import { upvoteArticleVotes, downvoteArticleVotes } from "../api";
 
 function VoteHandler(props){
 
@@ -7,9 +7,11 @@ function VoteHandler(props){
 
     const [voteCount, setVoteCount] = useState(0)
 
+    const [error, setError] = useState(null)
+
     useEffect(() => {
-        updateArticleVotes(articleId).then((initialVotes) => {
-            setVoteCount(initialVotes - 1)
+        setVoteCount((currVoteCount) => {
+            currVoteCount
         })
     }, [])
 
@@ -18,11 +20,28 @@ function VoteHandler(props){
         setVoteCount((currVoteCount) => {
             currVoteCount + 1
         })
+        setError(null)
+        upvoteArticleVotes(articleId)
+        .then((votes) => {
+            setVoteCount(votes)
+        })
+        .catch((err) => {
+            setVoteCount((currentLikesCount) => currentLikesCount - 1);
+            setError("Your upvote was not successful. Please try again!");
+        })
     }
 
     function handleDownvote(){
         setVoteCount((currVoteCount) => {
             currVoteCount - 1
+        })
+        downvoteArticleVotes(articleId)
+        .then((initialVotes) => {
+            setVoteCount(initialVotes)
+        })
+        .catch((err) => {
+            setVoteCount((currentLikesCount) => currentLikesCount + 1);
+            setError("Your downvote was not successful. Please try again!");
         })
     }
 
