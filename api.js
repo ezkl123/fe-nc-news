@@ -22,4 +22,18 @@ function getCommentsByID(articleId){
     })
 }
 
-export { getArticles, getSingleArticle, getCommentsByID }
+function upvoteArticleVotes(articleId){
+    return api.patch(`/api/articles/${articleId}`, {inc_votes: 1}).then((response) => {
+        console.log(response.data.article.votes)
+        return response.data.article.votes;
+    })
+}
+
+function downvoteArticleVotes(articleId){
+    return api.patch(`/api/articles/${articleId}`, {inc_votes: -1}).then((response) => {
+        console.log(response.data.article.votes)
+        return response.data.article.votes;
+    })
+}
+
+export { getArticles, getSingleArticle, getCommentsByID, upvoteArticleVotes, downvoteArticleVotes }
